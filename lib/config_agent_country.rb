@@ -1,4 +1,4 @@
-require "config_agent/version"
+require "config_agent/country/version"
 
 module ConfigAgent
   module Country
