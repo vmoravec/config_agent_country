@@ -19,11 +19,9 @@
 require 'config_agent/sysconfig'
 
 module ConfigAgent
-  module Country
-    class Clock < ConfigAgent::Sysconfig
-      def initialize params={}
-        super "/etc/sysconfig/clock",params
-      end
+  class Keyboard < ConfigAgent::Sysconfig
+    def initialize params={}
+      super "/etc/sysconfig/keyboard",params
     end
   end
 end

@@ -16,22 +16,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 
-require 'config_agent/script_agent'
+require 'config_agent/sysconfig'
 
 module ConfigAgent
-  module Country
-    class Setxkbmap < ConfigAgent::ScriptAgent
-
-      def execute(params)
-        old_display         = ENV["DISPLAY"]
-        ENV["DISPLAY"]      = params["DISPLAY"] if params["DISPLAY"]
-
-        ret = run ["/usr/bin/setxkbmap"] + (params["exec_args"] || [])
-        log.warn "setxkbmap output: #{ret.inspect}" unless ret["exit"] == 0
-        return ret
-      ensure
-        ENV["DISPLAY"] = old_display
-      end
+  class Language < ConfigAgent::Sysconfig
+    def initialize params={}
+      super "/etc/sysconfig/language",params
     end
   end
 end
